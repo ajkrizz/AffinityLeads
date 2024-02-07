@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 const seed = async () => {
   await prisma.leadMagnet.create({
     data: {
-      id: "123456789",
+      id: "0123456789",
       draftBody: "This is a draft body",
       draftEmailCapture: "This is a draft email capture",
       draftFirstQuestion: "This is a draft first question",
@@ -21,7 +21,7 @@ const seed = async () => {
       publishedTitle: "This is a published title",
       slug: "lead-magnet-slug",
       status: "draft",
-      userId: "user_2WruMGsskRrt6HDECpRhzNyH1vp",
+      userId: "user_2b7bqAe3GP3KFcGsxnCNESBTlnt",
     },
   });
 
@@ -31,13 +31,13 @@ const seed = async () => {
         name: "Dummy User 1",
         email: "dummy1@gmail.com",
         leadMagnetId: "123456789",
-        userId: "user_2WruMGsskRrt6HDECpRhzNyH1vp",
+        userId: "user_2b7bqAe3GP3KFcGsxnCNESBTlnt",
       },
       {
         name: "Dummy User 2",
         email: "dummy2@gmail.com",
         leadMagnetId: "123456789",
-        userId: "user_2WruMGsskRrt6HDECpRhzNyH1vp",
+        userId: "user_2b7bqAe3GP3KFcGsxnCNESBTlnt",
       },
     ],
   });
