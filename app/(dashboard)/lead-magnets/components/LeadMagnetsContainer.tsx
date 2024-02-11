@@ -2,8 +2,10 @@
 
 import { Button } from "@/components/ui/button";
 import {Lead,LeadMagnet} from "@prisma/client";
-import { Link } from "lucide-react";
+
 import React from 'react';
+import LeadMagnetTable from "./LeadMagnetTable";
+import Link from "next/link";
 
 interface LeadMagnetsContainerProps {
     leadMagnets: LeadMagnet[];
@@ -21,9 +23,11 @@ interface LeadMagnetsContainerProps {
     <div className="flex justify-between items-center mb-3">
         <h2 className="text-xl font-semibold">Lead Magnets</h2>
         <Button variant="default">
-            <Link href="/lead-magnet-editor">Create</Link>
+        <Link href="/lead-magnet-editor"> Create </Link>
         </Button>
     </div>
+
+    <LeadMagnetTable leadMagnets={leadMagnets} leads={leads} />
   </div>
   );
 }

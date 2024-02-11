@@ -1,5 +1,6 @@
 import React from 'react'
 import LandingPageNavbar from './components/LandingPageNavbar'
+import LandingPageFooter from './components/LandingPageFooter'
 
 function Landinglayout({
     children, // will be a page or nested layout
@@ -11,6 +12,7 @@ function Landinglayout({
     <LandingPageNavbar />
 
     <div className="flex-grow">{children}</div>
+    <LandingPageFooter />
   </section>
   )
 }
