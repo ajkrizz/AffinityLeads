@@ -4,7 +4,6 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useLeadMagnetEditorContext } from '@/context/LeadMagnetEditorContext'
-import { useProfileEditorContext } from '@/context/ProfileEditorContext';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React from 'react'
@@ -16,13 +15,12 @@ function LeadMagnetEditorNavbar() {
   const {
     edittedLeadMagnet,
     setEdittedLeadMagnet,
-    save: saveLeadMagnet,
+    save,
     publish,
     unpublish,
     remove,
   } = useLeadMagnetEditorContext();
 
-  const { save: saveProfile, account } = useProfileEditorContext();
 
   const [editing, setEditing] = React.useState(false);
   const [saving, setSaving] = React.useState(false);
@@ -50,8 +48,7 @@ function LeadMagnetEditorNavbar() {
   const handleSave = async () => {
     setSaving(true);
     try {
-      await saveLeadMagnet();
-      await saveProfile();
+      await save();
       toast.success("Saved!");
     } catch (error) {
       console.log(error);
@@ -162,14 +159,13 @@ function LeadMagnetEditorNavbar() {
         {/* Unpublish and View Final LM */}
         {edittedLeadMagnet.status === "published" && (
           <>
-            <Button variant="outline" onClick={handleUnpublish}>
+            <Button onClick={handleUnpublish}>
               {unpublishing ? "Unpublishing..." : "Unpublish"}
             </Button>
-            {account && (
-              <Link href={`/lm/${account?.username}/${edittedLeadMagnet.slug}`}>
-                <Button variant="outline">View Published</Button>
+              <Link href={`/lm/test/${edittedLeadMagnet.slug}`}>
+                <Button >View Published</Button>
               </Link>
-            )}
+            
           </>
         )}
        {/* Save & Publish with state */}
