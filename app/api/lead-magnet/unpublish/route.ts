@@ -1,18 +1,17 @@
 import { prismadb } from "@/lib/prismadb";
-import { slugifyLeadMagnet } from "@/lib/utils";
 import { currentUser } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
-const leadMagnetPublishRequest = z.object(
+const leadMagnetUnpublishRequest = z.object(
     {
         id:z.string({ required_error : "Id is required !"}),
     }
 );
 
+
 export async function POST(request:Request) {
     //Grab clerk auth
-    
     const user = await currentUser();
 
     if(!user|| !user.id)
@@ -33,7 +32,7 @@ export async function POST(request:Request) {
     const requestBody = await request.json();
 
     const parsedPublishedRequest = 
-    leadMagnetPublishRequest.safeParse(requestBody);
+    leadMagnetUnpublishRequest.safeParse(requestBody);
 
     if(!parsedPublishedRequest.success)
     {
@@ -58,29 +57,23 @@ export async function POST(request:Request) {
     );
   }
 
-  const publishedLeadMagnet = await prismadb.leadMagnet.update({
-    where: {
-      id: publishRequest.id,
+  const unpublishedLeadMagnet = await prismadb.leadMagnet.update({
+    where:{
+        id:publishRequest.id,
     },
-    data: {
-      ...leadMagnet,
-      publishedBody: leadMagnet.draftBody,
-      publishedPrompt: leadMagnet.draftPrompt,
-      publishedTitle: leadMagnet.draftTitle,
-      publishedSubtitle: leadMagnet.draftSubtitle,
-      publishedFirstQuestion: leadMagnet.draftFirstQuestion,
-      publishedEmailCapture: leadMagnet.draftEmailCapture,
-      updatedAt: new Date(),
-      status: "published",
-      publishedAt: new Date(),
-      slug: leadMagnet.slug ?? slugifyLeadMagnet(leadMagnet.draftTitle),
+    data:{
+        ...leadMagnet,
+        status: "draft",
+        updatedAt : new Date(),
+  },
+});
+
+return NextResponse.json(
+    {
+      message: "Successfully unpublished new lead magnet!",
+      data: unpublishedLeadMagnet,
+      success: true,
     },
-  });
-
-  return NextResponse.json({
-    message: "Successfully published lead magnet!",
-    data: publishedLeadMagnet,
-    success: true,
-  });
-
+    { status: 201 }
+  );
 }

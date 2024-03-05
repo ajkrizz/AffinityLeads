@@ -12,7 +12,13 @@ import { z } from "zod";
              )
         {
            // Grab clerk Auth
-           const userId = "user_2b7bqAe3GP3KFcGsxnCNESBTlnt" ;
+           const user = await currentUser();
+
+           if (!user || !user.id) {
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+          }
+        
+          const userId = user.id;
 
            const requestBody =  await request.json();
            const parsed = schema.safeParse(requestBody);
@@ -76,12 +82,16 @@ import { z } from "zod";
           }
 
           //Grab clerk auth
-        /*  if (leadMagnet.userId !== user?.id){
-            return NextResponse.json(
-            { message: "Unauthorized" }, 
-            { status: 403 });
+          const user = await currentUser();
+
+          if (!user || !user.id) {
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
           }
-          */
+
+          if (leadMagnet.userId !== user.id)
+           return NextResponse.json({ message: "Unauthorized" }, { status: 403 });
+        
+        
           await prismadb.leadMagnet.delete({ where: { id } });
 
           return NextResponse.json(
