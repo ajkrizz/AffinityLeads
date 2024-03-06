@@ -33,7 +33,7 @@ function LeadMagnetEditorNavbar() {
     try{
       await saveName();
       toast.success('Saved!');
-
+      setEditing(false);
     }catch(error) {
       console.log(error);
       toast.error('Error saving name.Please try again');
