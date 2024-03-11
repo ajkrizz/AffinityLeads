@@ -14,7 +14,6 @@ import CodeBlock from "@tiptap/extension-code-block";
 import OrderedList from "@tiptap/extension-ordered-list";
 import History from "@tiptap/extension-history";
 import LeadMagnetContentPreview from './LeadMagnetContentPreview';
-//import LeadMagnetContentPreview from "./LeadMagnetContentPreview";
 
 function LeadMagnetContentEditor() {
 
@@ -65,7 +64,7 @@ function LeadMagnetContentEditor() {
   return (
     <div className='flex h-full flex-row'>
         <div className="m-8 flex w-1/2 flex-col">
-            <h1 className="mb-4 text-3xl font-bold text-purple-500">
+            <h1 className="mb-4 w-fit bg-gradient-to-r from-red-400 to-purple-600 bg-clip-text text-3xl font-bold text-transparent">
                 Content  Editor
             </h1>
             <div className="mb-4">
@@ -85,7 +84,7 @@ function LeadMagnetContentEditor() {
             placeholder="What is the title of your lead magnet?"
           />
             </div>
-        </div>
+        
         <div className="mb-4">
           <label className="mb-2 block text-sm font-bold text-gray-700">
             Sub Title
@@ -103,7 +102,7 @@ function LeadMagnetContentEditor() {
             placeholder="What is the subtitle of your lead magnet?"
           />
         </div>
-
+        
         <div className="mb-4">
           <label className="mb-2 block text-sm font-bold text-gray-700">
             Body
@@ -115,7 +114,7 @@ function LeadMagnetContentEditor() {
              />
           )}
         </div>
-
+        </div>
         <div className="purple-dotted-pattern flex h-full w-1/2 flex-col overflow-y-auto">
         <div className="mx-12 my-8 flex h-full max-w-lg lg:mx-auto">
           <LeadMagnetContentPreview

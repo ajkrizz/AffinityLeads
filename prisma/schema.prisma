@@ -49,3 +49,27 @@ model Lead {
   @@index([leadMagnetId])
   @@index([userId])
 }
+
+model Profile {
+  id              String   @id @default(uuid())
+  userId          String   @unique
+  title           String
+  description     String   @db.Text
+  profileImageUrl String   @db.Text
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @default(now())
+
+  @@index([userId])
+}
+
+model Account {
+  id        String   @id @default(uuid())
+  userId    String   @unique
+  email     String   @unique
+  username  String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([username])
+}

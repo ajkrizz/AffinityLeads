@@ -77,11 +77,27 @@
 
 /* ----- LEAD MAGNET EDITOR ----- */
 .purple-dotted-pattern {
-  background-color: #f3e8ff; /* light purple */
-  background-image: radial-gradient(circle, #c3b5f7 1px, transparent 1px),
-    radial-gradient(circle, #c3b5f7 1px, transparent 1px);
-  background-size: 20px 20px;
-  background-position: 0 0, 10px 10px;
+  background: radial-gradient(
+    circle,
+    rgba(24, 166, 201, 0.948) 1px,
+    transparent 1px
+  ),
+  radial-gradient(circle, rgba(255, 255, 255, 0.63) 1px, transparent 1px),
+  linear-gradient(to right, #3b176b, #9f7aea); /* gradient background */
+background-size: 20px 20px, 20px 20px, 100%; /* matching sizes for pattern, 100% for gradient */
+background-position: 0 0, 10px 10px, 0 0; 
+}
+
+.ai-dotted-pattern {
+  background: radial-gradient(
+    circle,
+    rgba(24, 166, 201, 0.948) 1px,
+    transparent 1px
+  ),
+  radial-gradient(circle, rgba(255, 255, 255, 0.63) 1px, transparent 1px),
+  linear-gradient(to right, #3b176b, #9f7aea); /* gradient background */
+background-size: 20px 20px, 20px 20px, 100%; /* matching sizes for pattern, 100% for gradient */
+background-position: 0 0, 10px 10px, 0 0; 
 }
 
 /* ----- TIP TAP ----- */
