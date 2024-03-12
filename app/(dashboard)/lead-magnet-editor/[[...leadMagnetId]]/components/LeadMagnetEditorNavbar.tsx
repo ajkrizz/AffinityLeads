@@ -4,6 +4,7 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useLeadMagnetEditorContext } from '@/context/LeadMagnetEditorContext'
+import { useProfileEditorContext } from '@/context/ProfileEditorContext';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React from 'react'
@@ -15,12 +16,13 @@ function LeadMagnetEditorNavbar() {
   const {
     edittedLeadMagnet,
     setEdittedLeadMagnet,
-    save,
+    save: saveLeadMagnet,
     publish,
     unpublish,
     remove,
   } = useLeadMagnetEditorContext();
 
+  const {save :saveProfile} = useProfileEditorContext();
 
   const [editing, setEditing] = React.useState(false);
   const [saving, setSaving] = React.useState(false);
@@ -48,7 +50,8 @@ function LeadMagnetEditorNavbar() {
   const handleSave = async () => {
     setSaving(true);
     try {
-      await save();
+      await saveLeadMagnet();
+      await saveProfile();
       toast.success("Saved!");
     } catch (error) {
       console.log(error);
