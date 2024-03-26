@@ -1,6 +1,4 @@
 "use client"
-
-
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useLeadMagnetEditorContext } from '@/context/LeadMagnetEditorContext'
@@ -8,8 +6,8 @@ import { useProfileEditorContext } from '@/context/ProfileEditorContext';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React from 'react'
-import { toast } from 'react-hot-toast';
 import { BsArrowLeft, BsCheck, BsPencil } from 'react-icons/bs';
+import { toast } from 'react-toastify';
 
 function LeadMagnetEditorNavbar() {
   const router = useRouter();
@@ -22,7 +20,7 @@ function LeadMagnetEditorNavbar() {
     remove,
   } = useLeadMagnetEditorContext();
 
-  const {save :saveProfile} = useProfileEditorContext();
+  const {save :saveProfile,account} = useProfileEditorContext();
 
   const [editing, setEditing] = React.useState(false);
   const [saving, setSaving] = React.useState(false);
@@ -102,7 +100,7 @@ function LeadMagnetEditorNavbar() {
   };
 
   return (
-    <div className="flex w-full flex-row items-center justify-between border-b-[1px] border-solid border-gray-200 bg-white p-3 text-gray-600">
+    <div className="flex w-full flex-row items-center justify-between border-b-[2px] border-solid border-gray-100 bg-white p-4 text-gray-600">
     <div className="flex flex-row items-center">
      {/*sGo Back */}
      <BsArrowLeft
@@ -114,14 +112,14 @@ function LeadMagnetEditorNavbar() {
        {/* Input / Name */}
        {editing ? (
           <Input
-            value={edittedLeadMagnet.name}
-            onChange={(e) =>
-              setEdittedLeadMagnet((prev) => ({
-                ...prev,
-                name: e.target.value,
-              }))
-            }
-          />
+          value={edittedLeadMagnet.name}
+          onChange={(e) =>
+            setEdittedLeadMagnet((prev:any) => ({
+              ...prev,
+              name: e.target.value,
+            }))
+          }
+        />
         ) : (
           <span className="text-xl font-bold">{edittedLeadMagnet.name}</span>
         )}
@@ -165,9 +163,11 @@ function LeadMagnetEditorNavbar() {
             <Button onClick={handleUnpublish}>
               {unpublishing ? "Unpublishing..." : "Unpublish"}
             </Button>
-              <Link href={`/lm/test/${edittedLeadMagnet.slug}`}>
-                <Button >View Published</Button>
+            {account && (
+              <Link href={`/lm/${account?.username}/${edittedLeadMagnet.slug}`}>
+                <Button variant="outline">View Published</Button>
               </Link>
+            )}
             
           </>
         )}

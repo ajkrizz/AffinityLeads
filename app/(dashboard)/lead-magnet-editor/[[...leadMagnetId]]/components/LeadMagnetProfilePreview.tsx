@@ -1,7 +1,6 @@
-import { Profile } from "@prisma/client";
+import { Prisma, Profile } from '@prisma/client';
 import Image from "next/image";
 import React from "react";
-
 interface LeadMagnetProfileEditorProps {
   profile: Profile;
 }

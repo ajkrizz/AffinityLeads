@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { Dispatch, SetStateAction } from "react";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
+
 
 interface LeadMagnetEmailCapturePreviewProps {
   leadMagnetId: string;

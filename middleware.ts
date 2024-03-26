@@ -11,7 +11,9 @@ export default authMiddleware({
     "/api/webhooks/stripe",
     "/api/lead-magnet/publish",
     "/api/lead-magnet/unpublish",
+    "/api/uploadthing",
   ], // Add more paths if required,
+  
 });
  
 export const config = {

@@ -10,7 +10,8 @@ import {
   useContext,
   useState,
 } from "react";
-import { toast } from "react-hot-toast";
+import { toast } from "react-toastify";
+
 
 interface LeadMagnetEditorContextState {
   edittedLeadMagnet: LeadMagnet;

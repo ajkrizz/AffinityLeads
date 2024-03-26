@@ -10,7 +10,7 @@ async function LandingPageNavbar() {
   return <nav className="flex w-screen items-center justify-between p-6">
     <div>
         <Link
-        className="text-2xt font-bold text-purple-500 no-underline"
+        className="mb-4 w-fit bg-gradient-to-r from-red-400 to-purple-600 bg-clip-text text-3xl font-bold text-transparent"
         href="/">
             Affinity Leads
         </Link>

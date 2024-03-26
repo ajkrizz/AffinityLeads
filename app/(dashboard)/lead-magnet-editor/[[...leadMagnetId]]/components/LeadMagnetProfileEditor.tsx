@@ -1,11 +1,9 @@
 import { useProfileEditorContext } from "@/context/ProfileEditorContext";
 import { UploadButton } from "@/utils/uploadthing";
-import React from "react";
-import toast from "react-hot-toast";
 import "@uploadthing/react/styles.css";
+import React from "react";
 import LeadMagnetProfilePreview from "./LeadMagnetProfilePreview";
-
-
+import { toast } from "react-toastify";
 
 function LeadMagnetProfileEditor() {
   const { edittedProfile, setEdittedProfile } = useProfileEditorContext();
@@ -16,7 +14,8 @@ function LeadMagnetProfileEditor() {
         <h1 className="mb-4 w-fit bg-gradient-to-r from-red-400 to-purple-600 bg-clip-text text-3xl font-bold text-transparent">
           Profile Editor
         </h1>
-        <UploadButton
+        <div className="mb-4">
+          <UploadButton
             appearance={{
               button:
                 "bg-purple-500 focus-within:ring-purple-500 after:bg-purple-500",
@@ -40,6 +39,7 @@ function LeadMagnetProfileEditor() {
               toast.error("Something went wrong. Please try again.");
             }}
           />
+        </div>
         <div className="mb-4">
           <label className="mb-2 block text-sm font-bold text-gray-700">
             Title
@@ -76,7 +76,7 @@ function LeadMagnetProfileEditor() {
         </div>
       </div>
       <div className="purple-dotted-pattern flex w-1/2 flex-col">
-      <div className="mx-12 my-8 flex max-w-lg rounded-lg bg-white p-4 shadow-lg lg:mx-auto">
+        <div className="mx-12 my-8 flex max-w-lg rounded-lg bg-white p-4 shadow-lg lg:mx-auto">
           <LeadMagnetProfilePreview profile={edittedProfile} />
         </div>
       </div>

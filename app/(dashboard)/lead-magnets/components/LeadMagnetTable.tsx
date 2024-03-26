@@ -44,29 +44,31 @@ function LeadMagnetTable({leadMagnets  ,leads}:LeadMagnetTableProps) {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {leadMagnets.map((leadMagnet) => (
-              <TableRow key={leadMagnet.id}>
-                <TableCell>
-                <Link
+        {leadMagnets.map((leadMagnet) => (
+          <TableRow key={leadMagnet.id}>
+            <TableCell>
+              <Link
                 className="text-lg"
                 href={`/lead-magnet-editor/${leadMagnet.id}`}
-              >{leadMagnet.name}
-                  </Link>
-                  </TableCell>
-                <TableCell>{leadMagnet.pageViews}</TableCell>
-                <TableCell>{getLeadsForLeadMagnet(leadMagnet.id)}</TableCell>
-                <TableCell>{getConversionRate(leadMagnet.id, leadMagnet.pageViews)} %</TableCell>
-                <TableCell> 
-                <Link href={`/leads/${leadMagnet.id}`}>
-                     <Button className="font-normal" variant="link">
-                          View Leads
-                     </Button>
-                </Link>
-                </TableCell>
-                
-              </TableRow>
-            ))}
-          </TableBody>
+              >
+                {leadMagnet.name}
+              </Link>
+            </TableCell>
+            <TableCell>{leadMagnet.pageViews}</TableCell>
+            <TableCell>{getLeadsForLeadMagnet(leadMagnet.id)}</TableCell>
+            <TableCell>
+              {getConversionRate(leadMagnet.id, leadMagnet.pageViews)} %
+            </TableCell>
+            <TableCell>
+              <Link href={`/leads/${leadMagnet.id}`}>
+                <Button className="font-normal" variant="link">
+                  View Leads
+                </Button>
+              </Link>
+            </TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
         </Table>
       );
     }

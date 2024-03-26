@@ -10,6 +10,10 @@ const routes = [
     path: "/lead-magnets",
   },
   {
+    name: "About",
+    path:  "/about",
+  },
+  {
     name: "Account",
     path: "/account",
   },
@@ -21,10 +25,10 @@ function DashboardNavBar() {
   console.log("pathname", pathname);
 
   return (
-    <div className="p-6 flex justify-between items-center text-purple-500 border-b-2">
+    <div className="p-3 flex justify-between items-center text-purple-500 border-b">
       {/* Logo Link */}
       <Link href="/">
-        <h1 className="text-2xl font-bold">Affinity Leads AI</h1>
+        <h1 className="mb-4 w-fit bg-gradient-to-r from-red-400 to-purple-600 bg-clip-text text-3xl font-bold text-transparent">Affinity Leads AI</h1>
       </Link>
       {/*  Routes followed by the clerk user button */}
       <div className="flex gap-x-6 text-lg items-center">

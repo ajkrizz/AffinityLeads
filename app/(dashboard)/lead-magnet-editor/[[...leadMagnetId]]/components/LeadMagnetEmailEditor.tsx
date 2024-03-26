@@ -10,7 +10,7 @@ function LeadMagnetEmailEditor() {
   return (
     <div className="flex h-full flex-row border-t-2 border-grey-200">
         <div className="m-8 flex w-1/2 flex-col">
-        <h1 className="mb-4 text-3xl font-bold text-purple-500">
+        <h1 className="mb-4 w-fit bg-gradient-to-r from-red-400 to-purple-600 bg-clip-text text-3xl font-bold text-transparent">
           Email Capture Editor
         </h1>
         <div className="mb-4">
