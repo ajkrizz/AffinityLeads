@@ -8,6 +8,7 @@ export default authMiddleware({
     "/",
     "/api/account",
     "/api/lead-magnet",
+    "/api/lead-magnet1",
     "/api/webhooks/stripe",
     "/api/lead-magnet/publish",
     "/api/lead-magnet/unpublish",

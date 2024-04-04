@@ -2,18 +2,25 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Account} from "@prisma/client";
+import { getPayingStatus } from "@/utils/stripe";
+import { Account, Subscription } from "@prisma/client";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 interface AccountContainerProps {
-  account: Account;}
+  account: Account;
+  subscription: Subscription | null;
+}
 
-function AccountContainer({ account }: AccountContainerProps) {
+function AccountContainer({ account, subscription }: AccountContainerProps) {
+  const [isActive, setIsActive] = useState(getPayingStatus(subscription));
   const [username, setUsername] = useState(account.username);
   const [isSaving, setIsSaving] = useState(false);
 
+  useEffect(() => {
+    setIsActive(getPayingStatus(subscription));
+  }, [subscription]);
 
   const updateUsername = async () => {
     setIsSaving(true);
@@ -92,7 +99,15 @@ function AccountContainer({ account }: AccountContainerProps) {
           {isSaving ? "Saving..." : "Save"}
         </Button>
       </div>
-      
+      <hr />
+      <h2 className="text-xl text-gray-700">Subscription</h2>
+      <div className="flex flex-row gap-x-2">
+        <p className="font-semibold text-gray-700">Status:</p>
+        <p className="text-gray-700">{isActive ? "Active" : "Inactive"}</p>
+      </div>
+      <Button onClick={handleStripe} variant="outline" className="w-fit">
+        {isActive ? "Manage Subscription" : "Upgrade to Pro"}
+      </Button>
     </div>
   );
 }

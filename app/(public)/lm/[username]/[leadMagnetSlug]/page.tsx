@@ -19,9 +19,9 @@ export async function generateMetadata({
     where: { username: params.username },
   });
 
-  let title = "LeadConvert.ai";
+  let title = "Affinity AI leads";
   let description =
-    "LeadConvert helps creators turn regular content into interactive AI experiences, effortlessly capturing leads, and nurturing them towards your digital products or courses.";
+    "Affinity AI leads helps creators turn regular content into interactive AI experiences, effortlessly capturing leads, and nurturing them towards your digital products or courses.";
   let openGraphImage;
 
   if (account) {

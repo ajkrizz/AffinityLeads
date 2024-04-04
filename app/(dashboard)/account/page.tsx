@@ -1,9 +1,8 @@
 import { prismadb } from "@/lib/prismadb";
 import { auth, currentUser } from "@clerk/nextjs";
 import React from "react";
+import { generateFromEmail } from "unique-username-generator";
 import AccountContainer from "./components/AccountContainer";
-const { generateFromEmail } = require("unique-username-generator");
-
 
 async function AccountPage() {
   const fetchAccount = async (userId: string) => {
@@ -26,14 +25,22 @@ async function AccountPage() {
     return account;
   };
 
+  const fetchSubscription = (userId: string) => {
+    return prismadb.subscription.findUnique({
+      where: { userId },
+    });
+  };
 
   const { userId } = auth();
 
   if (!userId) throw new Error("User not found");
 
-  const account = await fetchAccount(userId) ;
+  const [account, subscription] = await Promise.all([
+    fetchAccount(userId),
+    fetchSubscription(userId),
+  ]);
 
-  return <AccountContainer account={account} />;
+  return <AccountContainer account={account} subscription={subscription} />;
 }
 
 export default AccountPage;

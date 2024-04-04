@@ -2,7 +2,6 @@ import { currentUser } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import { leadMagnetCreateRequest, leadMagnetUpdateRequest } from "./schema";
 import { prismadb } from "@/lib/prismadb";
-import { error } from "console";
 import { z } from "zod";
 
 async function handleRequest(
@@ -10,13 +9,13 @@ async function handleRequest(
   schema: z.ZodType<any, any>,
   isUpdate = false
 ) {
-  const user = await currentUser();
+  const userId ="user_2b7bqAe3GP3KFcGsxnCNESBTlnt";
+  //const user = await currentUser();
+  //if (!user || !user.id) {
+    //return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+  //}
 
-  if (!user || !user.id) {
-    return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
-  }
-
-  const userId = user.id;
+ // const userId = user.id;
 
   const requestBody = await request.json();
   const parsed = schema.safeParse(requestBody);
