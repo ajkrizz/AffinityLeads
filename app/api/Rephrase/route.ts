@@ -10,6 +10,7 @@ const openai = new OpenAI({
 export const runtime = "edge";
 
 export async function POST(request: Request) {
+
   try {
     const { messages } = await request.json();
 

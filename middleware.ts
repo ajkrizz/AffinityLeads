@@ -8,13 +8,13 @@ export default authMiddleware({
     "/",
     "/api/account",
     "/api/lead-magnet",
-    "/api/lead-magnet1",
     "/api/webhooks/stripe",
     "/api/lead-magnet/publish",
     "/api/lead-magnet/unpublish",
     "/api/uploadthing",
-  ], // Add more paths if required,
-  
+    "/api/openai",
+    "/api/Rephrase",
+  ],
 });
  
 export const config = {

@@ -9,13 +9,13 @@ async function handleRequest(
   schema: z.ZodType<any, any>,
   isUpdate = false
 ) {
-  const userId ="user_2b7bqAe3GP3KFcGsxnCNESBTlnt";
-  //const user = await currentUser();
-  //if (!user || !user.id) {
-    //return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
-  //}
+  //const userId ="user_2b7bqAe3GP3KFcGsxnCNESBTlnt";
+  const user = await currentUser();
+  if (!user || !user.id) {
+    return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+  }
 
- // const userId = user.id;
+  const userId = user.id;
 
   const requestBody = await request.json();
   const parsed = schema.safeParse(requestBody);

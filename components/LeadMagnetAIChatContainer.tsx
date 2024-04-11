@@ -42,10 +42,21 @@ function LeadMagnetAIChatContainer({
     ]);
   }, [prompt, firstQuestion, setMessages]);
 
- 
+  const hasUserEnteredInfo = () => {
+    if (captureEmail && !hasCapturedUserInfo) {
+      setShowEmailCaptureModal(true);
+      return false;
+    }
+
+    return true;
+  }; 
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-  
+    e.preventDefault();
+
+    if (!hasUserEnteredInfo()) {
+      return;
+    }
 
     handleOpenAIChatSubmit(e);
   };

@@ -1,12 +1,8 @@
-// LeadMagnetContentEditor.tsx
-
+import { Input } from "@/components/ui/input";
 import React, { useEffect, useState } from "react";
 import { Editor, EditorContent } from "@tiptap/react";
-import { Input } from "@/components/ui/input";
-import { useLeadMagnetEditorContext } from "@/context/LeadMagnetEditorContext";
-import axios from "axios";
-import LeadMagnetContentPreview from "./LeadMagnetContentPreview";
-import { Button } from "@/components/ui/button";
+import BulletList from "@tiptap/extension-bullet-list";
+import ListItem from "@tiptap/extension-list-item";
 import Paragraph from "@tiptap/extension-paragraph";
 import Document from "@tiptap/extension-document";
 import Text from "@tiptap/extension-text";
@@ -16,43 +12,43 @@ import Heading from "@tiptap/extension-heading";
 import CodeBlock from "@tiptap/extension-code-block";
 import OrderedList from "@tiptap/extension-ordered-list";
 import History from "@tiptap/extension-history";
-import BulletList from "@tiptap/extension-bullet-list";
-import ListItem from "@tiptap/extension-list-item";
+import LeadMagnetContentPreview from "./LeadMagnetContentPreview";
+import { useLeadMagnetEditorContext } from "@/context/LeadMagnetEditorContext";
+import axios from 'axios';
 
-function LeadMagnetContentEditor() {
-  const { edittedLeadMagnet, setEdittedLeadMagnet } =
-    useLeadMagnetEditorContext();
-
+const LeadMagnetContentEditor = () => {
+  const { edittedLeadMagnet, setEdittedLeadMagnet } = useLeadMagnetEditorContext();
   const [editor, setEditor] = useState<Editor | null>(null);
+  const [paraphrasedText, setParaphrasedText] = useState('');
 
   useEffect(() => {
     if (!editor) {
-      setEditor(
-        new Editor({
-          extensions: [
-            Document,
-            Paragraph,
-            Text,
-            Bold,
-            Italic,
-            Heading.configure({
-              levels: [1, 2, 3],
-            }),
-            CodeBlock,
-            BulletList,
-            OrderedList,
-            ListItem,
-            History,
-          ],
-          content: edittedLeadMagnet.draftBody,
-          onUpdate: ({ editor }) => {
-            setEdittedLeadMagnet((prev) => ({
-              ...prev,
-              draftBody: editor.getHTML(),
-            }));
-          },
-        })
-      );
+      const newEditor = new Editor({
+        extensions: [
+          Document,
+          Paragraph,
+          Text,
+          Bold,
+          Italic,
+          Heading.configure({
+            levels: [1, 2, 3],
+          }),
+          CodeBlock,
+          BulletList,
+          OrderedList,
+          ListItem,
+          History,
+        ],
+        content: edittedLeadMagnet.draftBody,
+        onUpdate: ({ editor }) => {
+          setEdittedLeadMagnet((prev) => ({
+            ...prev,
+            draftBody: editor.getHTML(),
+          }));
+        },
+      });
+
+      setEditor(newEditor);
     }
 
     return () => {
@@ -62,38 +58,39 @@ function LeadMagnetContentEditor() {
     };
   }, []);
 
-  const handleRephrase = async () => {
-    // Handle rephrasing logic here
+  const paraphraseText = async () => {
+    if (!edittedLeadMagnet || !edittedLeadMagnet.draftBody) {
+      console.error('Draft body is undefined or empty.');
+      return;
+    }
+
     try {
-      const response = await axios.post(
-        "https://api.openai.com/v1/engines/davinci-codex/completions",
-        {
-          prompt: edittedLeadMagnet.draftBody,
-          max_tokens: 150,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
-          },
-        }
-      );
-      // Update the lead magnet body with the rephrased content
-      setEdittedLeadMagnet((prev) => ({
-        ...prev,
-        draftBody: response.data.choices[0].text.trim(),
-      }));
+      const response = await axios.post('/api/Rephrase', {
+        messages: [
+          {
+            role: 'user',
+            content: edittedLeadMagnet.draftBody
+          }
+        ]
+      });
+      setParaphrasedText(response.data);
     } catch (error) {
-      console.error("Error rephrasing content:", error);
+      console.error('Error paraphrasing text:', error);
     }
   };
 
   return (
-    <div className="flex h-full flex-row">
+    <div className="flex h-full flex-row overflow-y-auto">
       <div className="m-8 flex w-1/2 flex-col">
-        <h1 className="mb-4 text-3xl font-bold text-purple-500">
-          Content Editor
-        </h1>
+        <div className="flex items-center">
+          <h1 className="mb-4 text-3xl font-bold text-purple-500">Content Editor</h1>
+          <button
+            className="ml-4 rounded bg-purple-500 px-4 py-2 text-white hover:bg-purple-600"
+            onClick={paraphraseText}
+          >
+            Paraphrase
+          </button>
+        </div>
         <div className="mb-4">
           <label className="mb-2 block text-sm font-bold text-gray-700">
             Title
@@ -127,7 +124,7 @@ function LeadMagnetContentEditor() {
           />
         </div>
 
-        <div className="mb-10 flex flex-col overflow-y-auto rounded-lg bg-white p-4 shadow-lg md:mb-10 md:p-8 relative">
+        <div className="mb-4">
           <label className="mb-2 block text-sm font-bold text-gray-700">
             Body
           </label>
@@ -138,6 +135,16 @@ function LeadMagnetContentEditor() {
             />
           )}
         </div>
+        <div className="mb-4">
+          <label className="mb-2 block text-sm font-bold text-gray-700">
+            Paraphrased Content
+          </label>
+          <textarea
+            className="w-full h-auto resize-y appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow outline-none focus:outline-none my-"
+            value={paraphrasedText}
+            
+          />
+        </div>
       </div>
       <div className="purple-dotted-pattern flex h-full w-1/2 flex-col overflow-y-auto">
         <div className="mx-12 my-8 flex h-full max-w-lg lg:mx-auto">
@@ -145,12 +152,11 @@ function LeadMagnetContentEditor() {
             body={edittedLeadMagnet.draftBody}
             title={edittedLeadMagnet.draftTitle}
             subtitle={edittedLeadMagnet.draftSubtitle}
-            onRephrase={handleRephrase} // Pass down the handleRephrase function
           />
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default LeadMagnetContentEditor;

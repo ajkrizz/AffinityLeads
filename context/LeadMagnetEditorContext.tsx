@@ -125,7 +125,7 @@ export function useLeadMagnetEditorContext() {
   const context = useContext(LeadMagnetEditorContext);
   if (!context) {
     throw new Error(
-      "useLeadMagnetEditorContext must be used within a LeadMagnetEditorProvider"
+      "use LeadMagnetEditorContext must be used within a LeadMagnetEditorProvider"
     );
   }
 
