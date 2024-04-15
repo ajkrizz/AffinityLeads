@@ -61,7 +61,9 @@ export async function PUT(request: Request) {
 }
 
 export async function GET() {
+
   const user = await currentUser();
+  console.log("hi");
 
   if (!user) {
     return NextResponse.json({ message: "Unauthenticated" }, { status: 401 });
@@ -83,7 +85,6 @@ export async function GET() {
       },
     });
   }
-
   return NextResponse.json(
     {
       message: "Account found",

@@ -36,7 +36,7 @@ export async function GET() {
           price_data: {
             currency: "USD",
             product_data: {
-              name: "Affinity-leads pro",
+              name: "Affinity Leads ai pro",
               description: "Unlimited AI Lead Magnets",
             },
             unit_amount: 500,
