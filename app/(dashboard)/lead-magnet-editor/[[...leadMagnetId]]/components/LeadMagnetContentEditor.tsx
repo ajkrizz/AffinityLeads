@@ -130,7 +130,7 @@ const LeadMagnetContentEditor = () => {
           </label>
           {editor && (
             <EditorContent
-              className="h-[50vh] w-full appearance-none overflow-y-scroll rounded border px-3 py-2 leading-tight text-gray-700 shadow outline-none focus:outline-none"
+              className="h-[35vh] w-full appearance-none overflow-y-scroll rounded border px-3 py-2 leading-tight text-gray-700 shadow outline-none focus:outline-none"
               editor={editor}
             />
           )}
@@ -142,7 +142,7 @@ const LeadMagnetContentEditor = () => {
           <textarea
   className="w-full h-[150px] resize-y appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow outline-none focus:outline-none my-"
   value={paraphrasedText}
-/>
+          />
         </div>
       </div>
       <div className="purple-dotted-pattern flex h-full w-1/2 flex-col overflow-y-auto">

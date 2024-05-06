@@ -215,7 +215,7 @@ const Pricing = () => {
           </CardHeader>
           <CardContent className="mt-4">
             <p className="mb-2 text-center text-gray-600">
-              Create up to 2 AI Lead Magnets
+              Create up to 5 AI Lead Magnets
             </p>
             <Link href="/lead-magnets">
               <Button variant="outline">Get Started</Button>
@@ -225,7 +225,7 @@ const Pricing = () => {
         <Card className="text-center">
           <CardHeader>
             <CardDescription className="text-xl">Paid Plan</CardDescription>
-            <CardTitle className="text-4xl">$10/Month</CardTitle>
+            <CardTitle className="text-4xl">$5/Month</CardTitle>
           </CardHeader>
           <CardContent>
             <p className="mb-4 text-center text-gray-600">

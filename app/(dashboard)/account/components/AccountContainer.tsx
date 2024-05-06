@@ -54,21 +54,27 @@ function AccountContainer({ account, subscription }: AccountContainerProps) {
       });
   };
 
-  const handleStripe = async () => {
-    try {
-      const response = await axios.get("/api/stripe");
+  const [isLoading, setIsLoading] = useState(false);
 
-      if (response.data.url) {
-        window.location.href = response.data.url;
-      } else {
-        console.error("Something went wrong with Stripe.");
-        toast.error("Something went wrong with Stripe. Please try again.");
-      }
-    } catch (error) {
-      console.error("Something went wrong with Stripe.");
+const handleStripe = async () => {
+  setIsLoading(true);
+  
+  try {
+    const response = await axios.get("/api/stripe");
+
+    if (response.data.url) {
+      window.location.href = response.data.url;
+    } else {
+      console.error("Stripe session URL not received.");
       toast.error("Something went wrong with Stripe. Please try again.");
     }
-  };
+  } catch (error) {
+    console.error("Error initiating Stripe session:", error);
+    toast.error("Something went wrong with Stripe. Please try again.");
+  } finally {
+    setIsLoading(false);
+  }
+};
 
   return (
     <div className="flex h-full w-full flex-col m-8 gap-y-4">
@@ -105,7 +111,12 @@ function AccountContainer({ account, subscription }: AccountContainerProps) {
         <p className="font-semibold text-gray-700">Status:</p>
         <p className="text-gray-700">{isActive ? "Active" : "Inactive"}</p>
       </div>
-      <Button onClick={handleStripe} variant="outline" className="w-fit">
+      <Button 
+           onClick={handleStripe} 
+           variant="outline" 
+           className="w-fit" 
+           disabled={isLoading}
+        >
         {isActive ? "Manage Subscription" : "Upgrade to Pro"}
       </Button>
     </div>

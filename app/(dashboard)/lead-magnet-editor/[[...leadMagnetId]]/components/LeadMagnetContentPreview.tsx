@@ -12,7 +12,7 @@ function LeadMagnetContentPreview({
   body,
 }: LeadMagnetContentPreviewProps) {
   return (
-    <div className="mb-10 flex flex-col overflow-hidden rounded-lg bg-white p-4 shadow-lg md:mb-10 md:p-8 max-h-[85vh]">
+    <div className="mb-10 flex flex-col overflow-hidden rounded-lg bg-white p-4 shadow-lg md:mb-10 md:p-8 max-h-[95vh]">
       <h1 className="mb-4 text-2xl font-semibold text-gray-700 md:text-4xl">
         {title}
       </h1>

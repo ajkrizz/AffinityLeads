@@ -6,12 +6,19 @@ import { authMiddleware } from "@clerk/nextjs";
 export default authMiddleware({
   publicRoutes: [
     "/",
-    "/api/account",
+    "/api/account", 
+    "/api/account/components",
     "/api/lead-magnet",
-    "/api/webhooks/stripe",
+    "/api/webhook/stripe",
     "/api/lead-magnet/publish",
     "/api/lead-magnet/unpublish",
 
+  ],
+  ignoredRoutes: [
+    "/((?!api|trpc))(_next.*|.+\.[\w]+$)",
+    "/api/webhooks/stripe",
+    "/api/account", 
+    "/api/account/components",  // Added here
   ],
 });
 
