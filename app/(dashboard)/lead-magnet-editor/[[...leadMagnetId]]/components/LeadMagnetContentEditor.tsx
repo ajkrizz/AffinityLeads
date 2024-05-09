@@ -63,7 +63,7 @@ const LeadMagnetContentEditor = () => {
       console.error('Draft body is undefined or empty.');
       return;
     }
-
+  
     try {
       const response = await axios.post('/api/Rephrase', {
         messages: [
@@ -73,22 +73,33 @@ const LeadMagnetContentEditor = () => {
           }
         ]
       });
-      setParaphrasedText(response.data);
+      
+      // Remove HTML tags using a regular expression
+      const cleanedText = response.data.replace(/<[^>]*>?/gm, '');
+      
+      setParaphrasedText(cleanedText);
     } catch (error) {
       console.error('Error paraphrasing text:', error);
     }
+  };
+
+  const pasteContent = () => {
+    setEdittedLeadMagnet(prev => ({
+      ...prev,
+      draftBody: paraphrasedText
+    }));
   };
 
   return (
     <div className="flex h-full flex-row overflow-y-auto">
       <div className="m-8 flex w-1/2 flex-col">
         <div className="flex items-center">
-          <h1 className="mb-4 text-3xl font-bold text-purple-500">Content Editor</h1>
+          <h1 className="mb-4 w-fit bg-gradient-to-r from-red-400 to-purple-600 bg-clip-text text-3xl font-bold text-transparent">Content Editor</h1>
           <button
             className="ml-4 rounded bg-purple-500 px-4 py-2 text-white hover:bg-purple-600"
             onClick={paraphraseText}
           >
-            Paraphrase
+            Rewrite
           </button>
         </div>
         <div className="mb-4">
@@ -130,19 +141,29 @@ const LeadMagnetContentEditor = () => {
           </label>
           {editor && (
             <EditorContent
-              className="h-[35vh] w-full appearance-none overflow-y-scroll rounded border px-3 py-2 leading-tight text-gray-700 shadow outline-none focus:outline-none"
+              className="h-[15vh] w-full appearance-none overflow-y-scroll rounded border px-3 py-2 leading-tight text-gray-700 shadow outline-none focus:outline-none"
               editor={editor}
             />
           )}
         </div>
         <div className="mb-4">
-          <label className="mb-2 block text-sm font-bold text-gray-700">
-            Paraphrased Content
-          </label>
-          <textarea
-  className="w-full h-[150px] resize-y appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow outline-none focus:outline-none my-"
-  value={paraphrasedText}
-          />
+        <div className="mb-4">
+  <label className="mb-2 block text-sm font-bold text-gray-700">
+    Rewrited Content
+  </label>
+  <div className="flex items-center">
+    <textarea
+      className="w-[750px] h-[25vh] appearance-none overflow-y-scroll rounded border px-3 py-2 leading-tight text-gray-700 shadow outline-none focus:outline-none"
+      value={paraphrasedText}
+    />
+    <button
+      className="rounded bg-purple-500 px-4 py-2 text-white hover:bg-purple-600 ml-4"
+      onClick={pasteContent}
+    >
+      Paste
+    </button>
+  </div>
+</div>
         </div>
       </div>
       <div className="purple-dotted-pattern flex h-full w-1/2 flex-col overflow-y-auto">

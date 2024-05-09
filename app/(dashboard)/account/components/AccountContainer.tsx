@@ -77,50 +77,66 @@ const handleStripe = async () => {
 };
 
   return (
-    <div className="flex h-full w-full flex-col m-8 gap-y-4">
-      <h1 className="text-2xl font-semibold text-gray-700">Account Home</h1>
-      <hr />
-      <div className="w-fit">
-        <label className="mb-2 block text-sm font-bold text-gray-700">
-          Username
-        </label>
-        <Input
-          type="text"
-          className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
-          value={username}
-          onChange={(e) => {
-            setUsername(e.target.value);
-          }}
-          placeholder="Username here..."
-        />
+  <div className="flex h-full w-full flex-col m-8 gap-y-4 ">
+    <h1 className="mb-4 w-fit bg-gradient-to-r from-red-400 to-purple-600 bg-clip-text text-3xl font-bold text-transparent">Account Home</h1>
+    <hr />
+    <div className="flex flex-row gap-x-8">
+      {/* Left column for Account Home content */}
+      <div className="w-1/2">
+        <div className="w-fit">
+          <label className="mb-4 w-fit bg-gradient-to-r from-purple-400 to-red-600 bg-clip-text text-3xl font-bold text-transparent">
+            Username
+          </label>
+          
+          <Input
+            type="text"
+            className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
+            value={username}
+            onChange={(e) => {
+              setUsername(e.target.value);
+            }}
+            placeholder="Username here..."
+          />
+        </div>
+        
+        <br></br>
+        <div className="flex flex-row gap-x-4">
+          <Button
+            variant="outline"
+            onClick={() => setUsername(account?.username || "")}
+          >
+            Cancel
+          </Button>
+          <Button onClick={updateUsername}>
+            {isSaving ? "Saving..." : "Save"}
+          </Button>
+          <br></br>
+          <hr/>
+        </div>
       </div>
-      <div className="flex flex-row gap-x-4">
-        <Button
-          variant="outline"
-          onClick={() => setUsername(account?.username || "")}
+      {/* Right column for Subscription content */}
+      <div className="w-1/2">
+        <h1 className="mb-4 w-fit bg-gradient-to-r from-purple-400 to-red-600 bg-clip-text text-3xl font-bold text-transparent">Subscription</h1>
+        <div className="flex flex-row gap-x-2">
+          <p className="font-semibold text-gray-700">Status:</p>
+          <p className="text-gray-700">{isActive ? "Active" : "Inactive"}</p>
+        </div>
+        
+        <br></br>
+        <Button 
+          onClick={handleStripe} 
+          variant="outline" 
+          className="w-fit" 
+          disabled={isLoading}
         >
-          Cancel
+          {isActive ? "Manage Subscription" : "Upgrade to Pro"}
         </Button>
-        <Button onClick={updateUsername}>
-          {isSaving ? "Saving..." : "Save"}
-        </Button>
+        <br></br>
+        <hr/>
       </div>
-      <hr />
-      <h2 className="text-xl text-gray-700">Subscription</h2>
-      <div className="flex flex-row gap-x-2">
-        <p className="font-semibold text-gray-700">Status:</p>
-        <p className="text-gray-700">{isActive ? "Active" : "Inactive"}</p>
-      </div>
-      <Button 
-           onClick={handleStripe} 
-           variant="outline" 
-           className="w-fit" 
-           disabled={isLoading}
-        >
-        {isActive ? "Manage Subscription" : "Upgrade to Pro"}
-      </Button>
     </div>
-  );
+  </div>
+);
 }
 
 export default AccountContainer;
