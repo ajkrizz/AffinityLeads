@@ -78,12 +78,13 @@ const handleStripe = async () => {
 
   return (
   <div className="flex h-full w-full flex-col m-8 gap-y-4 ">
-    <h1 className="mb-4 w-fit bg-gradient-to-r from-red-400 to-purple-600 bg-clip-text text-3xl font-bold text-transparent">Account Home</h1>
+    <h1 className="mb-4 w-fit bg-gradient-to-r from-purple-600 to-purple-600 bg-clip-text text-3xl font-bold text-transparent">Account Home</h1>
     <hr />
     <div className="flex flex-row gap-x-8">
       {/* Left column for Account Home content */}
       <div className="w-1/2">
         <div className="w-fit">
+          <br></br>
           <label className="mb-4 w-fit bg-gradient-to-r from-purple-400 to-red-600 bg-clip-text text-3xl font-bold text-transparent">
             Username
           </label>
@@ -116,6 +117,7 @@ const handleStripe = async () => {
       </div>
       {/* Right column for Subscription content */}
       <div className="w-1/2">
+        <br></br>
         <h1 className="mb-4 w-fit bg-gradient-to-r from-purple-400 to-red-600 bg-clip-text text-3xl font-bold text-transparent">Subscription</h1>
         <div className="flex flex-row gap-x-2">
           <p className="font-semibold text-gray-700">Status:</p>

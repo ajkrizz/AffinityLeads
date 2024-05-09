@@ -34,19 +34,20 @@ function LeadMagnetTable({leadMagnets  ,leads}:LeadMagnetTableProps) {
       };
 
     return (
-        <Table>
-          <TableHeader>
-            <TableRow>
+        <Table className="table table-hover table-striped">
+          <TableHeader >
+            <TableRow className="bg-purple-200">
               <TableHead className="text-lg">Name</TableHead>
               <TableHead className="text-lg">Page Visits</TableHead>
               <TableHead className="text-lg">Leads</TableHead>
               <TableHead className="text-lg">Conversion Rate</TableHead>
+              <TableHead className="text-lg">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
         {leadMagnets.map((leadMagnet) => (
-          <TableRow key={leadMagnet.id}>
-            <TableCell>
+          <TableRow key={leadMagnet.id} className="hover:bg-gray-100">
+            <TableCell className="bg-purple-50 p-5">
               <Link
                 className="text-lg"
                 href={`/lead-magnet-editor/${leadMagnet.id}`}
@@ -54,12 +55,12 @@ function LeadMagnetTable({leadMagnets  ,leads}:LeadMagnetTableProps) {
                 {leadMagnet.name}
               </Link>
             </TableCell>
-            <TableCell>{leadMagnet.pageViews}</TableCell>
-            <TableCell>{getLeadsForLeadMagnet(leadMagnet.id)}</TableCell>
-            <TableCell>
+            <TableCell className="bg-purple-50 p-5">{leadMagnet.pageViews}</TableCell>
+            <TableCell className="bg-purple-50 p-5">{getLeadsForLeadMagnet(leadMagnet.id)}</TableCell>
+            <TableCell className="bg-purple-50 p-5">
               {getConversionRate(leadMagnet.id, leadMagnet.pageViews)} %
             </TableCell>
-            <TableCell>
+            <TableCell className="bg-purple-50 p-5">
               <Link href={`/leads/${leadMagnet.id}`}>
                 <Button className="font-normal" variant="link">
                   View Leads

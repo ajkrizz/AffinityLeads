@@ -43,7 +43,8 @@ function Page() {
           <div className="section bg-white p-6 rounded-lg shadow-md">
             <h2 className="text-xl font-semibold text-purple-600 mb-2">Objective</h2>
             <p className="text-gray-800">
-              The objective of the "Affinity Leads AI - A lead magnet generator" project is to develop a comprehensive SaaS (Software as a Service) application tailored for online coaches, facilitating the creation of AI-powered lead magnets. Through this platform, the goal is to streamline the process of lead magnet creation, enabling users to generate AI-powered content effortlessly.
+              The objective of the "Affinity Leads AI - A lead magnet generator" project is to develop a comprehensive SaaS (Software as a Service) application tailored for online coaches, facilitating the creation of AI-powered lead magnets. 
+              Through this platform, the goal is to streamline the process of lead magnet creation, enabling users to generate AI-powered content effortlessly.
             </p>
           </div>
         </div>

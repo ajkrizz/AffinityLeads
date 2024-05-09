@@ -63,10 +63,10 @@ function LeadMagnetsContainer({
       <LeadMagnetTable leadMagnets={leadMagnets} leads={leads} />
 
       {!isActive && (
-        <div className="flex flex-col w-full mt-8 items-center">
+        <div className="flex flex-col w-full mt-12 items-center">
           <Card>
             <CardHeader className="text-center">
-              <CardTitle className="bg-gradient-to-r from-red-500 to-purple-500 inline-block text-transparent bg-clip-text pb-1 w-fit mx-auto">
+              <CardTitle className="bg-gradient-to-r from-purple-500 to-red-500 inline-block text-transparent bg-clip-text pb-6 w-fit mx-auto">
                 Upgrade To Pro
               </CardTitle>
             </CardHeader>

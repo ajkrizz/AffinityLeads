@@ -12,14 +12,14 @@ async function LandingPageNavbar() {
         <Link
         className="mb-4 w-fit bg-gradient-to-r from-red-400 to-purple-600 bg-clip-text text-3xl font-bold text-transparent"
         href="/">
-            Affinity Leads
+            Affinity Leads AI
         </Link>
     </div>
     <div className="text-purple-500 font-semibold  text-lg">
         {user ? (
             <div className="flex flex-row gap-x-4 items-center">
                 <Link href="/lead-magnets">
-                    <Button variant="outline">Open App</Button>
+                    <Button variant="outline">Open App AI</Button>
                 </Link>
                 <UserButton />
                 </div>

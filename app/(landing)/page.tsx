@@ -56,9 +56,9 @@ const Hero = () => {
 
 const Features = () => {
   return (
-    <div className="relative z-10 flex flex-col justify-center space-y-10 px-8 pb-12 pt-8 sm:py-12 md:flex-row md:space-x-4 md:space-y-0 md:py-20 lg:py-28 2xl:py-32">
-      <div className="absolute inset-0 z-0 -skew-y-6 transform bg-gradient-to-r from-purple-100 to-purple-50" />
-      <div className="relative z-10 flex flex-col justify-center space-y-10 md:flex-row md:space-x-4 md:space-y-0">
+    <div className="relative z-14 flex flex-col justify-center space-y-14 px-10 pb-16 pt-10 sm:py-14 md:flex-row md:space-x-8 md:space-y-0 md:py-20 lg:py-28 2xl:py-32">
+      <div className="absolute inset-0 z-0 -skew-y-8 transform bg-gradient-to-r from-purple-500 to-purple-100" />
+      <div className="relative z-10 flex flex-col justify-center space-y-10 md:flex-row md:space-x-10 md:space-y-0">
         <FeatureCard
           title="Unique AI Lead Magnets"
           description="Beyond ebooks and videos, offer dynamic AI solutions that speak directly to your audience's needs."
@@ -203,7 +203,8 @@ const HowItWorksStep = ({
 
 const Pricing = () => {
   return (
-    <div className="bg-gradient-to-r from-purple-400 to-red-500  py-16">
+    
+    <div className="bg-gradient-to-r from-purple-500 to-purple-100  py-16">
       <h2 className="text-5xl text-white font-bold text-center mb-8">
         Pricing
       </h2>
@@ -243,8 +244,8 @@ const Pricing = () => {
 
 const CallToAction = () => {
   return (
-    <div className="flex flex-col items-center bg-white px-6 py-16 text-center">
-      <h2 className="text-3xl font-bold text-purple-500 sm:text-4xl md:text-5xl">
+    <div className="flex flex-col items-center bg-gradient-to-r from-purple-500 to-purple-100 px-6 py-16 text-center">
+      <h2 className="text-4xl font-bold text-white-500 sm:text-4xl md:text-5xl">
         Ready to Transform Your Content?
       </h2>
       <p className="mt-4 max-w-2xl text-lg text-grey-700 sm:text-xl md:text-2xl">
