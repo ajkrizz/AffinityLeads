@@ -134,7 +134,6 @@ const handleStripe = async () => {
           {isActive ? "Manage Subscription" : "Upgrade to Pro"}
         </Button>
         <br></br>
-        <hr/>
       </div>
     </div>
   </div>

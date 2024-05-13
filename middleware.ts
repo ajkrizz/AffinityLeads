@@ -7,18 +7,17 @@ export default authMiddleware({
   publicRoutes: [
     "/",
     "/api/account", 
-    "/api/account/components",
     "/api/lead-magnet",
     "/api/webhook/stripe",
     "/api/lead-magnet/publish",
     "/api/lead-magnet/unpublish",
+    "/api/uploadthing",
 
   ],
   ignoredRoutes: [
     "/((?!api|trpc))(_next.*|.+\.[\w]+$)",
     "/api/webhooks/stripe",
-    "/api/account", 
-    "/api/account/components",  // Added here
+    // Added here
   ],
 });
 

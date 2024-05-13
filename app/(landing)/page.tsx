@@ -56,8 +56,8 @@ const Hero = () => {
 
 const Features = () => {
   return (
-    <div className="relative z-14 flex flex-col justify-center space-y-14 px-10 pb-16 pt-10 sm:py-14 md:flex-row md:space-x-8 md:space-y-0 md:py-20 lg:py-28 2xl:py-32">
-      <div className="absolute inset-0 z-0 -skew-y-8 transform bg-gradient-to-r from-purple-500 to-purple-100" />
+    <div className="relative z-10 flex flex-col justify-center space-y-10 px-8 pb-12 pt-8 sm:py-12 md:flex-row md:space-x-10 md:space-y-0 md:py-20 lg:py-28 2xl:py-32">
+      <div className="absolute inset-0 z-0 -skew-y-8 transform bg-gradient-to-r from-purple-400 to-purple-100" />
       <div className="relative z-10 flex flex-col justify-center space-y-10 md:flex-row md:space-x-10 md:space-y-0">
         <FeatureCard
           title="Unique AI Lead Magnets"
@@ -89,7 +89,7 @@ const FeatureCard = ({
   icon: JSX.Element;
 }) => {
   return (
-    <div className="flex flex-col items-center justify-center rounded-xl border border-purple-200 bg-white p-8 text-center md:w-80">
+    <div className="flex flex-col items-center justify-center rounded-xl border border-purple-200 bg-white p-8 text-center ">
       <div className="mb-4 rounded-full bg-purple-500 p-4 text-white">
         {icon}
       </div>
@@ -204,7 +204,7 @@ const HowItWorksStep = ({
 const Pricing = () => {
   return (
     
-    <div className="bg-gradient-to-r from-purple-500 to-purple-100  py-16">
+    <div className="bg-gradient-to-r from-purple-400 to-purple-100  py-16">
       <h2 className="text-5xl text-white font-bold text-center mb-8">
         Pricing
       </h2>
@@ -244,7 +244,7 @@ const Pricing = () => {
 
 const CallToAction = () => {
   return (
-    <div className="flex flex-col items-center bg-gradient-to-r from-purple-500 to-purple-100 px-6 py-16 text-center">
+    <div className="flex flex-col items-center bg-gradient-to-r from-purple-400 to-purple-100 px-6 py-16 text-center">
       <h2 className="text-4xl font-bold text-white-500 sm:text-4xl md:text-5xl">
         Ready to Transform Your Content?
       </h2>

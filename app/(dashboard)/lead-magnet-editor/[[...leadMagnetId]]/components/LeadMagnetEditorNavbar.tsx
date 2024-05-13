@@ -163,6 +163,7 @@ function LeadMagnetEditorNavbar() {
             <Button onClick={handleUnpublish}>
               {unpublishing ? "Unpublishing..." : "Unpublish"}
             </Button>
+            
             {account && (
               <Link href={`/lm/${account?.username}/${edittedLeadMagnet.slug}`}>
                 <Button variant="outline">View Published</Button>
